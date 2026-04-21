@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111114">
+<title>Micro Animations — AI Assistant Logo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #cc4c1a;
+    --accent-soft: rgba(204, 76, 26, 0.12);
+    --bg: #111114; --bg-raised: #18181c; --bg-card: #1c1c21;
+    --bg-glass: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08); --border-light: rgba(255, 255, 255, 0.12);
+    --text: rgba(255, 255, 255, 0.92); --text-muted: rgba(255, 255, 255, 0.55); --text-dim: rgba(255, 255, 255, 0.35);
+    --success: #34d399; --destructive: #f87171; --gold: #f5c542; --blue: #5b9bf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 48px 32px 80px; }
+  .page-title { font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .page-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 48px; max-width: 560px; }
+
+  /* Surface row */
+  .surface { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+  .surface:last-child { border-bottom: none; }
+  .surface-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 24px; }
+  .surface-info { flex: 1; }
+  .surface-name { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .surface-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .surface-size { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 500; color: var(--accent); white-space: nowrap; }
+
+  /* Demo mockup for each surface */
+  .surface-demo { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+
+  /* States used row */
+  .states-used { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .state-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border-light); color: var(--text-muted); }
+
+  /* Animations */
+  .anim-thinking { animation: thinking 2s ease-in-out infinite; }
+  @keyframes thinking {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  .anim-searching { animation: searching 1.8s ease-in-out infinite; }
+  @keyframes searching {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(5px) rotate(4deg); }
+    75% { transform: translateX(-5px) rotate(-4deg); }
+  }
+  .anim-typing { animation: typing 1.2s ease-in-out infinite; }
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  .anim-success { animation: success 2s ease-in-out infinite; }
+  @keyframes success {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    40% { transform: scale(1); }
+  }
+  .anim-error { animation: error-shake 2.5s ease-in-out infinite; }
+  @keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-3px); }
+    20% { transform: translateX(3px); }
+    30% { transform: translateX(-2px); }
+    40% { transform: translateX(0); }
+  }
+  .anim-wave { animation: wave 2s ease-in-out infinite; transform-origin: 70% 80%; }
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(10deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(0deg); }
+  }
+  .anim-needs-input { animation: needs-input 2.5s ease-in-out infinite; }
+  @keyframes needs-input {
+    0%, 100% { transform: translateY(0); }
+    20% { transform: translateY(-4px); }
+    30% { transform: translateY(0); }
+    40% { transform: translateY(-2px); }
+    50% { transform: translateY(0); }
+  }
+  .anim-bored { animation: bored 4s ease-in-out infinite; }
+  @keyframes bored {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(-2deg); }
+    75% { transform: translateY(2px) rotate(2deg); }
+  }
+  .anim-celebration { animation: celebration 2.5s ease-in-out infinite; }
+  @keyframes celebration {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.18) rotate(8deg); }
+    50% { transform: scale(1) rotate(0deg); }
+  }
+
+  .bolt { color: var(--accent); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bolt svg { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:32px;">
+    <span style="font-size:13px; font-weight:600; color:var(--text); border-bottom:2px solid var(--accent); padding-bottom:4px;">Micro</span>
+    <a href="expressive.html" style="font-size:13px; font-weight:500; color:var(--text-muted); text-decoration:none; padding-bottom:4px; border-bottom:2px solid transparent;">Expressive</a>
+  </div>
+  <div class="page-title">Micro Animations</div>
+  <div class="page-sub">Subtle, inline animations for product UI. 16–28px. Designed to communicate state without demanding attention.</div>
+
+  <!-- ═══ 1. ASK BAR (sidebar) ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Ask Bar</div>
+        <div class="surface-desc">Inside the left sidebar. The icon sits left of the input placeholder. Animates when the user submits a question and the AI is processing.</div>
+      </div>
+      <div class="surface-size">16px</div>
+    </div>
+    <div class="surface-demo" style="padding:12px 16px; background:var(--bg-raised); display:flex; align-items:center; gap:10px;">
+      <div class="bolt anim-thinking" style="width:16px; height:16px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      <span style="font-size:13px; color:var(--text-dim);">Thinking...</span>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Thinking</span>
+      <span class="state-tag">Searching</span>
+      <span class="state-tag">Typing</span>
+      <span class="state-tag">Error</span>
+    </div>
+  </div>
+
+  <!-- ═══ 2. CHAT AVATAR ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Chat Message Avatar</div>
+        <div class="surface-desc">Next to AI responses in the end-user chat thread and the internal conversation view. Static when the message is complete, animated while streaming.</div>
+      </div>
+      <div class="surface-size">28px</div>
+    </div>
+    <div class="surface-demo" style="padding:16px 20px; background:var(--bg); display:flex; gap:12px; align-items:flex-start;">
+      <div style="width:28px; height:28px; border-radius:8px; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <div class="bolt anim-typing" style="width:16px; height:16px; color:#fff;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600; margin-bottom:4px;">STLabs Assistant</div>
+        <div style="font-size:13px; color:var(--text-muted); line-height:1.6;">I found 3 similar incidents from the past month. The most common resolution was restarting the VPN gateway service...</div>
+      </div>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Thinking</span>
+      <span class="state-tag">Searching</span>
+      <span class="state-tag">Typing</span>
+    </div>
+  </div>
+
+  <!-- ═══ 3. TICKET PAGE — INLINE STATUS ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Ticket Page — Inline Status</div>
+        <div class="surface-desc">In the ticket detail view when the AI is enriching, summarizing, or running a recommended action. Appears next to a status label like "Analyzing ticket..." or "Running workflow..."</div>
+      </div>
+      <div class="surface-size">20px</div>
+    </div>
+    <div class="surface-demo" style="padding:14px 20px; background:var(--bg); display:flex; align-items:center; gap:10px;">
+      <div class="bolt anim-searching" style="width:20px; height:20px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      <span style="font-size:13px; color:var(--text-muted);">Searching knowledge base for similar incidents...</span>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Thinking</span>
+      <span class="state-tag">Searching</span>
+      <span class="state-tag">Success</span>
+      <span class="state-tag">Error</span>
+      <span class="state-tag">Needs Input</span>
+    </div>
+  </div>
+
+  <!-- ═══ 4. TICKET PAGE — ACTION CARD ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Ticket Page — Action Card</div>
+        <div class="surface-desc">Inside recommended action cards and workflow execution status. Shows when an AI-triggered action is running (e.g. "Push GP v6.2.1 via Jamf").</div>
+      </div>
+      <div class="surface-size">24px</div>
+    </div>
+    <div class="surface-demo" style="padding:16px 20px; background:var(--bg); display:flex; align-items:center; gap:14px;">
+      <div style="width:36px; height:36px; border-radius:10px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <div class="bolt anim-thinking" style="width:20px; height:20px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:500;">Push GP v6.2.1 via Jamf</div>
+        <div style="font-size:12px; color:var(--text-dim);">Running workflow &mdash; step 2 of 3</div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-dim);">12s</div>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Thinking</span>
+      <span class="state-tag">Typing</span>
+      <span class="state-tag">Success</span>
+      <span class="state-tag">Error</span>
+    </div>
+  </div>
+
+  <!-- ═══ 5. TOAST / NOTIFICATION ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Toast / Notification</div>
+        <div class="surface-desc">Transient feedback at the bottom of the screen. Confirms AI actions completed or reports failures. Plays once, doesn't loop.</div>
+      </div>
+      <div class="surface-size">18px</div>
+    </div>
+    <div style="display:flex; gap:12px;">
+      <div class="surface-demo" style="padding:12px 16px; background:var(--bg-raised); display:flex; align-items:center; gap:10px; flex:1;">
+        <div class="bolt anim-success" style="width:18px; height:18px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+        <span style="font-size:13px;">Ticket INC-4471 resolved</span>
+      </div>
+      <div class="surface-demo" style="padding:12px 16px; background:var(--bg-raised); display:flex; align-items:center; gap:10px; flex:1;">
+        <div class="bolt anim-error" style="width:18px; height:18px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+        <span style="font-size:13px;">Could not push configuration</span>
+      </div>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Success</span>
+      <span class="state-tag">Error</span>
+      <span class="state-tag">Celebration</span>
+    </div>
+  </div>
+
+  <!-- ═══ 6. EMPTY STATE / ONBOARDING ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Empty State / Onboarding</div>
+        <div class="surface-desc">First-time experience, empty inbox, or welcome-back screen. The logo is large and plays the Wave animation once to greet the user.</div>
+      </div>
+      <div class="surface-size">64px</div>
+    </div>
+    <div class="surface-demo" style="padding:48px 24px; background:var(--bg); text-align:center;">
+      <div class="bolt anim-wave" style="width:64px; height:64px; margin:0 auto 16px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      <div style="font-family:'DM Sans',sans-serif; font-size:18px; font-weight:600; margin-bottom:6px;">Welcome back</div>
+      <div style="font-size:14px; color:var(--text-muted);">Your inbox is clear. Nice work.</div>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Wave</span>
+      <span class="state-tag">Bored / Idle</span>
+      <span class="state-tag">Celebration</span>
+    </div>
+  </div>
+
+  <!-- ═══ 7. FULL-PAGE LOADING ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Full-Page Loading</div>
+        <div class="surface-desc">When the AI is doing heavy processing — bulk ticket analysis, report generation, or initial data load. Centered on page with a label below.</div>
+      </div>
+      <div class="surface-size">48px</div>
+    </div>
+    <div class="surface-demo" style="padding:56px 24px; background:var(--bg); text-align:center;">
+      <div class="bolt anim-thinking" style="width:48px; height:48px; margin:0 auto 14px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      <div style="font-size:14px; color:var(--text-muted);">Analyzing 32 unassigned tickets...</div>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Thinking</span>
+      <span class="state-tag">Searching</span>
+    </div>
+  </div>
+
+  <!-- ═══ 8. QUEUE COCKPIT — CARD LOADING ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Queue Cockpit — Card Loading</div>
+        <div class="surface-desc">Inside stat cards or table cells on the queue summary page when the AI is recalculating metrics or running auto-assignment.</div>
+      </div>
+      <div class="surface-size">20px</div>
+    </div>
+    <div class="surface-demo" style="padding:20px; background:var(--bg); display:flex; align-items:center; gap:8px;">
+      <div class="bolt anim-typing" style="width:20px; height:20px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      <span style="font-size:13px; color:var(--text-dim);">Recalculating assignment...</span>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Typing</span>
+      <span class="state-tag">Success</span>
+    </div>
+  </div>
+
+  <!-- ═══ 9. IDLE / BORED ═══ -->
+  <div class="surface">
+    <div class="surface-header">
+      <div class="surface-info">
+        <div class="surface-name">Sidebar — Idle</div>
+        <div class="surface-desc">When the user hasn't interacted with the assistant for a while. The logo in the ask bar drifts subtly to show it's still alive without demanding attention.</div>
+      </div>
+      <div class="surface-size">16px</div>
+    </div>
+    <div class="surface-demo" style="padding:12px 16px; background:var(--bg-raised); display:flex; align-items:center; gap:10px;">
+      <div class="bolt anim-bored" style="width:16px; height:16px;"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M29.928 15.98c0-1.195.73-2.2 1.72-2.494V7.472a2.486 2.486 0 0 0-2.486-2.486H2.838A2.486 2.486 0 0 0 .352 7.472v6.007c1.01.287 1.757 1.307 1.757 2.522 0 1.214-.747 2.234-1.757 2.522v6.004a2.486 2.486 0 0 0 2.486 2.486h26.325a2.486 2.486 0 0 0 2.486-2.486v-6.053c-.99-.294-1.72-1.299-1.72-2.494zM27.225 22.59H7.638l-2.864 1.36V9.402h22.451v13.188z"/><rect x="10.848" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/><rect x="18.583" y="13.66" width="2.607" height="4.64" rx="1.195" ry="1.195"/></svg></div>
+      <span style="font-size:13px; color:var(--text-dim);">Ask anything...</span>
+    </div>
+    <div class="states-used">
+      <span class="state-tag">Bored / Idle</span>
+    </div>
+  </div>
+
+  <!-- ═══ SUMMARY TABLE ═══ -->
+  <div style="margin-top:56px;">
+    <div style="font-family:'DM Sans',sans-serif; font-size:22px; font-weight:700; margin-bottom:20px;">Size Summary</div>
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; text-align:left; padding:10px 16px; border-bottom:1px solid var(--border-light);">Surface</th>
+          <th style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; text-align:left; padding:10px 16px; border-bottom:1px solid var(--border-light);">Size</th>
+          <th style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; text-align:left; padding:10px 16px; border-bottom:1px solid var(--border-light);">States</th>
+        </tr>
+      </thead>
+      <tbody style="font-size:13px;">
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Ask Bar</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">16px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Thinking, Searching, Typing, Error</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Sidebar Idle</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">16px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Bored / Idle</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Toast / Notification</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">18px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Success, Error, Celebration</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Ticket Inline Status</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">20px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Thinking, Searching, Success, Error, Needs Input</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Queue Card Loading</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">20px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Typing, Success</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Action Card</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">24px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Thinking, Typing, Success, Error</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Chat Avatar</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">28px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Thinking, Searching, Typing</td></tr>
+        <tr><td style="padding:12px 16px; border-bottom:1px solid var(--border);">Full-Page Loading</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; color:var(--accent);">48px</td><td style="padding:12px 16px; border-bottom:1px solid var(--border); color:var(--text-muted);">Thinking, Searching</td></tr>
+        <tr><td style="padding:12px 16px;">Empty State / Onboarding</td><td style="padding:12px 16px; font-family:'IBM Plex Mono',monospace; color:var(--accent);">64px</td><td style="padding:12px 16px; color:var(--text-muted);">Wave, Bored, Celebration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
