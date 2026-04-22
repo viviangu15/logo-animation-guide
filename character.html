@@ -34,7 +34,7 @@
   .char { color: var(--accent); width: 80px; height: 80px; }
   .char svg { width: 100%; height: 100%; overflow: visible; }
   .char .shell { fill: currentColor; }
-  .char .eye { fill: currentColor; }
+  .char .eye { fill: currentColor; transform-box: fill-box; transform-origin: center; }
   .char .hand { fill: currentColor; }
 
   /* ═══ THINKING — eyes up, hands at chin ═══ */
@@ -92,7 +92,7 @@
   .char-success .hand-r { animation: success-hand-r 3s ease-in-out infinite; }
   @keyframes success-eyes {
     0%, 100% { transform: scaleY(1); }
-    20%, 50% { transform: scaleY(0.3); }
+    20%, 50% { transform: scaleY(0.5); }
   }
   @keyframes success-body {
     0%, 100% { transform: scale(1) translateY(0); }
@@ -241,7 +241,7 @@
   .char-celebration .hand-r { animation: celebrate-hand-r 3s ease-in-out infinite; }
   @keyframes celebrate-eyes {
     0%, 100% { transform: scaleY(1); }
-    15%, 45% { transform: scaleY(0.25); }
+    15%, 45% { transform: scaleY(0.5); }
   }
   @keyframes celebrate-body {
     0%, 100% { transform: scale(1) rotate(0deg) translateY(0); }
