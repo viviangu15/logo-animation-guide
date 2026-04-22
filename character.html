@@ -35,134 +35,114 @@
   .char svg { width: 100%; height: 100%; overflow: visible; }
   .char .shell { fill: currentColor; }
   .char .eye { fill: currentColor; transform-box: fill-box; transform-origin: center; }
-  .char .hand { fill: currentColor; }
+  .char .hand { fill: currentColor; transform-box: fill-box; transform-origin: center; }
 
-  /* ═══ THINKING — eyes up, hands at chin ═══ */
+  /* ═══ THINKING — eyes become rounder (contemplative), one hand to chin ═══ */
   .char-thinking .eye { animation: think-eyes 3s ease-in-out infinite; }
   .char-thinking .shell { }
   .char-thinking .hand-l { animation: think-hand-l 3s ease-in-out infinite; }
   .char-thinking .hand-r { animation: think-hand-r 3s ease-in-out infinite; }
   @keyframes think-eyes {
-    0%, 100% { transform: translateY(0); }
-    30%, 70% { transform: translateY(-1px); }
-  }
-  @keyframes think-body {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
+    0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
+    30%, 70% { transform: translateY(-0.8px) scaleX(1.2) scaleY(0.85); }
   }
   @keyframes think-hand-l {
-    0%, 100% { transform: translate(0, 0); }
-    30%, 70% { transform: translate(1px, -2px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    30%, 70% { transform: translate(1px, -2px) scale(0.9); }
   }
   @keyframes think-hand-r {
-    0%, 100% { transform: translate(0, 0); }
-    30%, 70% { transform: translate(-0.5px, -3px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    30%, 70% { transform: translate(-0.5px, -3px) scale(1.15); }
   }
 
-  /* ═══ SEARCHING — eyes dart, hands shade eyes ═══ */
+  /* ═══ SEARCHING — eyes become wide+short (alert), hands shade brow ═══ */
   .char-searching .eye { animation: search-eyes 2s ease-in-out infinite; }
   .char-searching .shell { }
   .char-searching .hand-l { animation: search-hand-l 2s ease-in-out infinite; }
   .char-searching .hand-r { animation: search-hand-r 2s ease-in-out infinite; }
   @keyframes search-eyes {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(1px); }
-    75% { transform: translateX(-1px); }
-  }
-  @keyframes search-body {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(3deg); }
-    75% { transform: rotate(-3deg); }
+    0%, 100% { transform: translateX(0) scaleX(1) scaleY(1); }
+    15%, 40% { transform: translateX(0.8px) scaleX(1.3) scaleY(0.7); }
+    60%, 85% { transform: translateX(-0.8px) scaleX(1.3) scaleY(0.7); }
   }
   @keyframes search-hand-l {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-2px, 0); }
-    75% { transform: translate(1px, -2px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    15%, 40% { transform: translate(-1px, -2px) scale(0.8); }
+    60%, 85% { transform: translate(1px, -2px) scale(1.1); }
   }
   @keyframes search-hand-r {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-1px, -2px); }
-    75% { transform: translate(2px, 0); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    15%, 40% { transform: translate(-1px, -2px) scale(1.1); }
+    60%, 85% { transform: translate(1px, -2px) scale(0.8); }
   }
 
-  /* ═══ SUCCESS — happy eyes, hands thrown up ═══ */
+  /* ═══ SUCCESS — eyes become wide circles (happy surprise), hands open up ═══ */
   .char-success .eye { animation: success-eyes 3s ease-in-out infinite; }
   .char-success .shell { }
   .char-success .hand-l { animation: success-hand-l 3s ease-in-out infinite; }
   .char-success .hand-r { animation: success-hand-r 3s ease-in-out infinite; }
   @keyframes success-eyes {
-    0%, 100% { transform: scaleY(1); }
-    20%, 50% { transform: scaleY(0.5); }
-  }
-  @keyframes success-body {
-    0%, 100% { transform: scale(1) translateY(0); }
-    15% { transform: scale(1.1) translateY(-3px); }
-    35% { transform: scale(1) translateY(0); }
+    0%, 100% { transform: scaleX(1) scaleY(1); }
+    15%, 45% { transform: scaleX(1.4) scaleY(0.6); }
   }
   @keyframes success-hand-l {
-    0%, 100% { transform: translate(0, 0); }
-    15%, 45% { transform: translate(-3px, -6px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    15%, 45% { transform: translate(-3px, -5px) scale(1.4); }
   }
   @keyframes success-hand-r {
-    0%, 100% { transform: translate(0, 0); }
-    15%, 45% { transform: translate(3px, -6px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    15%, 45% { transform: translate(3px, -5px) scale(1.4); }
   }
 
-  /* ═══ ERROR — sad eyes, hands droop ═══ */
+  /* ═══ ERROR — eyes become thin horizontal slits (sad), hands shrink + droop ═══ */
   .char-error .eye { animation: error-eyes 3s ease-in-out infinite; }
   .char-error .shell { }
   .char-error .hand-l { animation: error-hand-l 3s ease-in-out infinite; }
   .char-error .hand-r { animation: error-hand-r 3s ease-in-out infinite; }
   @keyframes error-eyes {
-    0%, 100% { transform: translateY(0) scaleY(1); }
-    20%, 70% { transform: translateY(0.5px) scaleY(0.7); }
-  }
-  @keyframes error-body {
-    0%, 100% { transform: rotate(0deg) translateY(0); }
-    20%, 70% { transform: rotate(3deg) translateY(2px); }
+    0%, 100% { transform: scaleX(1) scaleY(1); }
+    20%, 70% { transform: scaleX(1.3) scaleY(0.5) translateY(0.5px); }
   }
   @keyframes error-hand-l {
-    0%, 100% { transform: translate(0, 0); }
-    20%, 70% { transform: translate(-1px, 4px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    20%, 70% { transform: translate(-1px, 4px) scale(0.7); }
   }
   @keyframes error-hand-r {
-    0%, 100% { transform: translate(0, 0); }
-    20%, 70% { transform: translate(1px, 3px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    20%, 70% { transform: translate(1px, 3px) scale(0.7); }
   }
 
-  /* ═══ NEEDS INPUT — blink, one hand waves ═══ */
+  /* ═══ NEEDS INPUT — eyes blink then widen (attentive), one hand waves ═══ */
   .char-needs-input .eye { animation: input-eyes 3s ease-in-out infinite; }
   .char-needs-input .shell { }
   .char-needs-input .hand-l { animation: input-hand-l 3s ease-in-out infinite; }
   .char-needs-input .hand-r { animation: input-hand-r 3s ease-in-out infinite; }
   @keyframes input-eyes {
-    0%, 15%, 25%, 100% { transform: scaleY(1); }
-    18%, 22% { transform: scaleY(0.1); }
-  }
-  @keyframes input-body {
-    0%, 30%, 100% { transform: rotate(0deg); }
-    50%, 80% { transform: rotate(5deg); }
+    0%, 15%, 25% { transform: scaleX(1) scaleY(1); }
+    18%, 22% { transform: scaleX(1.2) scaleY(0.1); }
+    50%, 80% { transform: scaleX(1.15) scaleY(0.9); }
+    100% { transform: scaleX(1) scaleY(1); }
   }
   @keyframes input-hand-l {
     0%, 100% { transform: translate(0, 0); }
   }
   @keyframes input-hand-r {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    40% { transform: translate(2px, -4px) rotate(-15deg); }
-    50% { transform: translate(2px, -4px) rotate(10deg); }
-    60% { transform: translate(2px, -4px) rotate(-10deg); }
-    70% { transform: translate(2px, -4px) rotate(5deg); }
-    85% { transform: translate(0, 0) rotate(0deg); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40% { transform: translate(2px, -4px) scale(1.3); }
+    50% { transform: translate(2px, -3px) scale(1.1); }
+    60% { transform: translate(2px, -4px) scale(1.3); }
+    70% { transform: translate(2px, -3px) scale(1.1); }
+    85% { transform: translate(0, 0) scale(1); }
   }
 
-  /* ═══ WAVE — wide eyes, both hands wave ═══ */
+  /* ═══ WAVE — eyes become big circles (excited), hands grow + wave ═══ */
   .char-wave .eye { animation: wave-eyes 2.5s ease-in-out infinite; }
   .char-wave .shell { }
   .char-wave .hand-l { animation: wave-hand-l 2.5s ease-in-out infinite; }
   .char-wave .hand-r { animation: wave-hand-r 2.5s ease-in-out infinite; }
   @keyframes wave-eyes {
-    0%, 60%, 100% { transform: scaleY(1); }
-    10%, 40% { transform: scaleY(1.15); }
+    0%, 60%, 100% { transform: scaleX(1) scaleY(1); }
+    10%, 40% { transform: scaleX(1.3) scaleY(0.75); }
   }
   @keyframes wave-body {
     0%, 100% { transform: rotate(0deg); }
@@ -173,46 +153,46 @@
     60% { transform: rotate(0deg); }
   }
   @keyframes wave-hand-l {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    12% { transform: translate(-3px, -5px) rotate(-20deg); }
-    24% { transform: translate(-2px, -5px) rotate(10deg); }
-    36% { transform: translate(-3px, -5px) rotate(-15deg); }
-    48% { transform: translate(-2px, -3px) rotate(5deg); }
-    60% { transform: translate(0, 0) rotate(0deg); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    12% { transform: translate(-3px, -5px) scale(1.4); }
+    24% { transform: translate(-2px, -4px) scale(1.1); }
+    36% { transform: translate(-3px, -5px) scale(1.4); }
+    48% { transform: translate(-2px, -3px) scale(1.1); }
+    60% { transform: translate(0, 0) scale(1); }
   }
   @keyframes wave-hand-r {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    12% { transform: translate(3px, -5px) rotate(20deg); }
-    24% { transform: translate(2px, -5px) rotate(-10deg); }
-    36% { transform: translate(3px, -5px) rotate(15deg); }
-    48% { transform: translate(2px, -3px) rotate(-5deg); }
-    60% { transform: translate(0, 0) rotate(0deg); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    12% { transform: translate(3px, -5px) scale(1.4); }
+    24% { transform: translate(2px, -4px) scale(1.1); }
+    36% { transform: translate(3px, -5px) scale(1.4); }
+    48% { transform: translate(2px, -3px) scale(1.1); }
+    60% { transform: translate(0, 0) scale(1); }
   }
 
-  /* ═══ BORED — drowsy eyes, hands hang ═══ */
+  /* ═══ BORED — eyes become thin slits (drowsy), hands shrink ═══ */
   .char-bored .eye { animation: bored-eyes 5s ease-in-out infinite; }
   .char-bored .shell { }
   .char-bored .hand-l { animation: bored-hand-l 5s ease-in-out infinite; }
   .char-bored .hand-r { animation: bored-hand-r 5s ease-in-out infinite; }
   @keyframes bored-eyes {
-    0%, 100% { transform: scaleY(1); }
-    30%, 60% { transform: scaleY(0.25); }
-    45% { transform: scaleY(0.15); }
+    0%, 100% { transform: scaleX(1) scaleY(1); }
+    30%, 60% { transform: scaleX(1.4) scaleY(0.35); }
+    45% { transform: scaleX(1.5) scaleY(0.2); }
   }
   @keyframes bored-body {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(2px) rotate(2deg); }
   }
   @keyframes bored-hand-l {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-1px, 3px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-1px, 3px) scale(0.7); }
   }
   @keyframes bored-hand-r {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(1px, 2px); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(1px, 2px) scale(0.7); }
   }
 
-  /* ═══ TYPING — rhythmic bounce, hands alternate ═══ */
+  /* ═══ TYPING — eyes steady, hands alternate tap (grow/shrink) ═══ */
   .char-typing .eye { animation: type-eyes 1.4s ease-in-out infinite; }
   .char-typing .shell { }
   .char-typing .hand-l { animation: type-hand-l 0.7s ease-in-out infinite; }
@@ -226,22 +206,22 @@
     40% { transform: translateY(-2px); }
   }
   @keyframes type-hand-l {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(2px); }
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(2px) scale(1.3); }
   }
   @keyframes type-hand-r {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(2px); }
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(2px) scale(1.3); }
   }
 
-  /* ═══ CELEBRATION — happy eyes, hands thrown way up ═══ */
+  /* ═══ CELEBRATION — eyes become wide ovals (joy), hands grow big + thrown up ═══ */
   .char-celebration .eye { animation: celebrate-eyes 3s ease-in-out infinite; }
   .char-celebration .shell { }
   .char-celebration .hand-l { animation: celebrate-hand-l 3s ease-in-out infinite; }
   .char-celebration .hand-r { animation: celebrate-hand-r 3s ease-in-out infinite; }
   @keyframes celebrate-eyes {
-    0%, 100% { transform: scaleY(1); }
-    15%, 45% { transform: scaleY(0.5); }
+    0%, 100% { transform: scaleX(1) scaleY(1); }
+    15%, 45% { transform: scaleX(1.4) scaleY(0.6); }
   }
   @keyframes celebrate-body {
     0%, 100% { transform: scale(1) rotate(0deg) translateY(0); }
@@ -251,18 +231,18 @@
     60% { transform: scale(1) rotate(0deg) translateY(0); }
   }
   @keyframes celebrate-hand-l {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    15% { transform: translate(-5px, -8px) rotate(-25deg); }
-    30% { transform: translate(-2px, -3px) rotate(-10deg); }
-    45% { transform: translate(-4px, -6px) rotate(-15deg); }
-    60% { transform: translate(0, 0) rotate(0deg); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    15% { transform: translate(-5px, -7px) scale(1.5); }
+    30% { transform: translate(-2px, -3px) scale(1.2); }
+    45% { transform: translate(-4px, -6px) scale(1.5); }
+    60% { transform: translate(0, 0) scale(1); }
   }
   @keyframes celebrate-hand-r {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    15% { transform: translate(5px, -8px) rotate(25deg); }
-    30% { transform: translate(2px, -3px) rotate(10deg); }
-    45% { transform: translate(4px, -6px) rotate(15deg); }
-    60% { transform: translate(0, 0) rotate(0deg); }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    15% { transform: translate(5px, -7px) scale(1.5); }
+    30% { transform: translate(2px, -3px) scale(1.2); }
+    45% { transform: translate(4px, -6px) scale(1.5); }
+    60% { transform: translate(0, 0) scale(1); }
   }
 </style>
 </head>
@@ -289,7 +269,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Thinking</div>
-      <div class="state-desc">Eyes gaze up. One hand rises to chin.</div>
+      <div class="state-desc">Eyes round out. Right hand grows, rises to chin.</div>
       <div class="state-feeling">Focused, patient</div>
     </div>
 
@@ -302,7 +282,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Searching</div>
-      <div class="state-desc">Eyes dart. Hands follow the scan direction.</div>
+      <div class="state-desc">Eyes widen + flatten (alert). Hands shade brow.</div>
       <div class="state-feeling">Curious, methodical</div>
     </div>
 
@@ -315,7 +295,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Success</div>
-      <div class="state-desc">Happy eyes. Both hands thrown up.</div>
+      <div class="state-desc">Eyes become wide ovals. Hands grow big + rise up.</div>
       <div class="state-feeling">Satisfied, positive</div>
     </div>
 
@@ -328,7 +308,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Failed / Error</div>
-      <div class="state-desc">Droopy eyes. Hands sag down.</div>
+      <div class="state-desc">Eyes flatten into sad slits. Hands shrink + droop.</div>
       <div class="state-feeling">Apologetic, composed</div>
     </div>
 
@@ -367,7 +347,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Bored / Idle</div>
-      <div class="state-desc">Eyes close. Hands hang low and limp.</div>
+      <div class="state-desc">Eyes flatten to thin slits. Hands shrink + hang.</div>
       <div class="state-feeling">Playful, subtle</div>
     </div>
 
@@ -380,7 +360,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Typing / Working</div>
-      <div class="state-desc">Body bounces. Hands tap alternately.</div>
+      <div class="state-desc">Eyes steady. Hands alternate grow-tap rhythm.</div>
       <div class="state-feeling">Neutral, rhythmic</div>
     </div>
 
@@ -393,7 +373,7 @@
         <circle class="hand hand-r" cx="33" cy="16" r="1.6"/>
       </svg></div></div>
       <div class="state-name">Celebration</div>
-      <div class="state-desc">Happy eyes. Hands thrown way up. Body jumps.</div>
+      <div class="state-desc">Wide oval eyes. Hands grow big + thrown way up.</div>
       <div class="state-feeling">Warm, rewarding</div>
     </div>
 
