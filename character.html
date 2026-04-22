@@ -34,17 +34,17 @@
   .char { color: var(--accent); width: 80px; height: 80px; }
   .char svg { width: 100%; height: 100%; overflow: visible; }
   .char .shell { fill: currentColor; }
-  .char .eye { fill: var(--bg); }
+  .char .eye { fill: currentColor; }
   .char .hand { fill: currentColor; }
 
   /* ═══ THINKING — eyes up, hands at chin ═══ */
   .char-thinking .eye { animation: think-eyes 3s ease-in-out infinite; }
-  .char-thinking .shell { animation: think-body 3s ease-in-out infinite; }
+  .char-thinking .shell { }
   .char-thinking .hand-l { animation: think-hand-l 3s ease-in-out infinite; }
   .char-thinking .hand-r { animation: think-hand-r 3s ease-in-out infinite; }
   @keyframes think-eyes {
     0%, 100% { transform: translateY(0); }
-    30%, 70% { transform: translateY(-1.5px); }
+    30%, 70% { transform: translateY(-1px); }
   }
   @keyframes think-body {
     0%, 100% { transform: scale(1); }
@@ -61,13 +61,13 @@
 
   /* ═══ SEARCHING — eyes dart, hands shade eyes ═══ */
   .char-searching .eye { animation: search-eyes 2s ease-in-out infinite; }
-  .char-searching .shell { animation: search-body 2s ease-in-out infinite; }
+  .char-searching .shell { }
   .char-searching .hand-l { animation: search-hand-l 2s ease-in-out infinite; }
   .char-searching .hand-r { animation: search-hand-r 2s ease-in-out infinite; }
   @keyframes search-eyes {
     0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(1.8px); }
-    75% { transform: translateX(-1.8px); }
+    25% { transform: translateX(1px); }
+    75% { transform: translateX(-1px); }
   }
   @keyframes search-body {
     0%, 100% { transform: rotate(0deg); }
@@ -87,7 +87,7 @@
 
   /* ═══ SUCCESS — happy eyes, hands thrown up ═══ */
   .char-success .eye { animation: success-eyes 3s ease-in-out infinite; }
-  .char-success .shell { animation: success-body 3s ease-in-out infinite; }
+  .char-success .shell { }
   .char-success .hand-l { animation: success-hand-l 3s ease-in-out infinite; }
   .char-success .hand-r { animation: success-hand-r 3s ease-in-out infinite; }
   @keyframes success-eyes {
@@ -110,12 +110,12 @@
 
   /* ═══ ERROR — sad eyes, hands droop ═══ */
   .char-error .eye { animation: error-eyes 3s ease-in-out infinite; }
-  .char-error .shell { animation: error-body 3s ease-in-out infinite; }
+  .char-error .shell { }
   .char-error .hand-l { animation: error-hand-l 3s ease-in-out infinite; }
   .char-error .hand-r { animation: error-hand-r 3s ease-in-out infinite; }
   @keyframes error-eyes {
     0%, 100% { transform: translateY(0) scaleY(1); }
-    20%, 70% { transform: translateY(1px) scaleY(0.7); }
+    20%, 70% { transform: translateY(0.5px) scaleY(0.7); }
   }
   @keyframes error-body {
     0%, 100% { transform: rotate(0deg) translateY(0); }
@@ -132,7 +132,7 @@
 
   /* ═══ NEEDS INPUT — blink, one hand waves ═══ */
   .char-needs-input .eye { animation: input-eyes 3s ease-in-out infinite; }
-  .char-needs-input .shell { animation: input-body 3s ease-in-out infinite; }
+  .char-needs-input .shell { }
   .char-needs-input .hand-l { animation: input-hand-l 3s ease-in-out infinite; }
   .char-needs-input .hand-r { animation: input-hand-r 3s ease-in-out infinite; }
   @keyframes input-eyes {
@@ -157,7 +157,7 @@
 
   /* ═══ WAVE — wide eyes, both hands wave ═══ */
   .char-wave .eye { animation: wave-eyes 2.5s ease-in-out infinite; }
-  .char-wave .shell { animation: wave-body 2.5s ease-in-out infinite; transform-origin: 50% 90%; }
+  .char-wave .shell { }
   .char-wave .hand-l { animation: wave-hand-l 2.5s ease-in-out infinite; }
   .char-wave .hand-r { animation: wave-hand-r 2.5s ease-in-out infinite; }
   @keyframes wave-eyes {
@@ -191,7 +191,7 @@
 
   /* ═══ BORED — drowsy eyes, hands hang ═══ */
   .char-bored .eye { animation: bored-eyes 5s ease-in-out infinite; }
-  .char-bored .shell { animation: bored-body 5s ease-in-out infinite; }
+  .char-bored .shell { }
   .char-bored .hand-l { animation: bored-hand-l 5s ease-in-out infinite; }
   .char-bored .hand-r { animation: bored-hand-r 5s ease-in-out infinite; }
   @keyframes bored-eyes {
@@ -214,7 +214,7 @@
 
   /* ═══ TYPING — rhythmic bounce, hands alternate ═══ */
   .char-typing .eye { animation: type-eyes 1.4s ease-in-out infinite; }
-  .char-typing .shell { animation: type-body 1.4s ease-in-out infinite; }
+  .char-typing .shell { }
   .char-typing .hand-l { animation: type-hand-l 0.7s ease-in-out infinite; }
   .char-typing .hand-r { animation: type-hand-r 0.7s ease-in-out infinite 0.35s; }
   @keyframes type-eyes {
@@ -236,7 +236,7 @@
 
   /* ═══ CELEBRATION — happy eyes, hands thrown way up ═══ */
   .char-celebration .eye { animation: celebrate-eyes 3s ease-in-out infinite; }
-  .char-celebration .shell { animation: celebrate-body 3s ease-in-out infinite; }
+  .char-celebration .shell { }
   .char-celebration .hand-l { animation: celebrate-hand-l 3s ease-in-out infinite; }
   .char-celebration .hand-r { animation: celebrate-hand-r 3s ease-in-out infinite; }
   @keyframes celebrate-eyes {
