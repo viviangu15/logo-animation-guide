@@ -247,13 +247,14 @@
 
   /* ═══ LOADING — dots scroll right to left horizontally, evenly spaced ═══ */
   .char-loading .shell { }
-  .char-loading .eye-l { animation: load-scroll 1.6s linear infinite; }
-  .char-loading .eye-r { animation: load-scroll 1.6s linear infinite 0.4s; }
-  .char-loading .hand-l { animation: load-scroll 1.6s linear infinite 0.8s; }
-  .char-loading .hand-r { animation: load-scroll 1.6s linear infinite 1.2s; }
+  .char-loading circle { transform-box: view-box; transform-origin: center; animation: load-scroll 1.6s linear infinite; }
+  .char-loading .eye-l { animation-delay: 0s; }
+  .char-loading .eye-r { animation-delay: 0.4s; }
+  .char-loading .hand-l { animation-delay: 0.8s; }
+  .char-loading .hand-r { animation-delay: 1.2s; }
   @keyframes load-scroll {
-    0%   { transform: translateX(6px); }
-    100% { transform: translateX(-6px); }
+    0%   { transform: translateX(5px); }
+    100% { transform: translateX(-5px); }
   }
 
   /* ═══ ALERT — eyes become exclamation mark, hands raised in alarm ═══ */
